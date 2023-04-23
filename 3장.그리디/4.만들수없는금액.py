@@ -1,3 +1,4 @@
+# 풀고 나니 그리디 문제 풀이 방식은 아닌 듯..
 import itertools
 
 def get_impossible_amount(n, amount_string):
