@@ -1,3 +1,4 @@
+# 왼쪽, 오른쪽 각각 더해보거나, 곱해봐서 큰 값을 취함.
 def plus_or_multiply(number_str: str):
 
     result = int(number_str[0])

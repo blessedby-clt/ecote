@@ -1,3 +1,6 @@
+# 초기값 -1부터 시작.
+# 000111000 이런 식이면, 0묶음 = 2개, 1묶음 = 1개. 작은 묶음 개수를 고른다.
+
 def shuffle_binary_string(binary_string:str):
     number_counter = {'0':0, '1':0}
     init_number = '-1'

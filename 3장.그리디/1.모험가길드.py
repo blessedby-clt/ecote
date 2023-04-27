@@ -1,3 +1,7 @@
+# 문제를 못풀어서 해답을 보고 풀었다.
+# 공포도 낮은 순으로 정렬해서, 공포도만큼 모험가 배정.
+# 공포도 1인 유저는 1명씩, 공포도 2인 유저는 2명씩 묶는 게 최대로 만들 수 있는 방법.
+
 def get_adventurer_group_number():
     number_of_adventurer = int(input())
     fear_score_list = list(map(int, input().split()))
