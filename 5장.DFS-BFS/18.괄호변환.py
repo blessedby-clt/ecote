@@ -33,8 +33,13 @@ def solution(p):
         answer += solution(v)
         answer += ")"
         u = u[1:-1]
-        u = u[::-1]
-        answer += u
+        temp_u = ''
+        for str in u:
+            if str == '(':
+                temp_u += ')'
+            else:
+                temp_u += '('
+        answer += temp_u
     return answer
 
 
