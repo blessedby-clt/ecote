@@ -1,15 +1,23 @@
-n = 1
-m = 1
-i = 10
+# 보드 크기
+i = int(input())
+# 사과 개수
+apple_count = int(input())
+# 사과 위치 설정
+apple = []
+for _ in range(apple_count):
+    apple.append(list(map(int, input().split())))
+n, m = 1, 1
 direction = 180
-snake = [[1, 1]]
+snake = [[n, m]]
 times = 0
-# apple = [[3, 4], [2, 5], [5, 3]]
-# action = {3:'D', 15:'L', 17:'D'}
-# apple = [[1, 2], [1, 3], [1, 4],[1, 5]]
-# action = {8 : "D", 10: "D", 11 : "D", 13:"L"}
-apple = [[1, 2], [1, 3],[1, 5], [1, 6],[1, 7]]
-action = {8 : "D", 10: "D", 11 : "D", 13:"L"}
+# 뱀의 행동횟수
+action_count = int(input())
+action = {}
+for _ in range(action_count):
+    temp_action = input().split()
+    action[int(temp_action[0])] = temp_action[1]
+
+
 is_game_continue = True
 def change_direction(direction, d):
     if d == "D":
@@ -41,7 +49,7 @@ while n > 0 and m > 0 and n < i + 1 and m < i + 1 and is_game_continue:
     times += 1
     before_n = n
     before_m = m
-    print(before_n, before_m)
+
     n, m = set_snake_head(direction, n, m)
     if [n, m] in apple:
         snake.append([before_n, before_m])
@@ -51,5 +59,5 @@ while n > 0 and m > 0 and n < i + 1 and m < i + 1 and is_game_continue:
     snake = move_snake(snake)
     if times in action.keys():
         direction = change_direction(direction, action[times])
-    print(times)
-    print(snake)
+
+print(times)
