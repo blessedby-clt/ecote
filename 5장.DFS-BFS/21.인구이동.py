@@ -4,42 +4,42 @@ map_list = [
     [70, 20, 30, 40],
     [50, 20, 100, 10]
 ]
-connect_list = [
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0]
-]
-# 5 10
+
 dx = [0, 0, 1, -1]
 dy = [1, -1, 0, 0]
-city_index = 1
-def renew_connect_list(city_index, r, c):
-    if connect_list[r][c] != 0:
-        pass
-    connect_list[r][c] = city_index
+
+def renew_connect_list(r, c):
     for i in range(4):
         nx = r + dx[i]
         ny = c + dy[i]
-        if nx >= 0 and nx < 4 and ny >= 0 and ny < 4:
-            if connect_list[nx][ny] != 0:
-                pass
-            else:
-                if abs(map_list[nx][ny] - map_list[r][c]) >= 10 and abs(map_list[nx][ny] - map_list[r][c]) <= 50:
-                    # connect_list[nx][ny] = city_index
-                    renew_connect_list(city_index, nx, ny)
-                else:
-                    connect_list[nx][ny] = -1
+        if nx >= 0 and nx < 4 and ny >= 0 and ny < 4 and not connect_list[nx][ny]:
+            if abs(map_list[nx][ny] - map_list[r][c]) >= 10 and abs(map_list[nx][ny] - map_list[r][c]) <= 50:
+                connect_list[nx][ny] = True
+                stack.append([nx, ny])
+                renew_connect_list(nx, ny)
+count = 0
+is_continue = True
+# while is_continue:
+while count < 5:
+    stack_list = []
+    connect_list = [[False] * 4 for _ in range(4)]
+    for r in range(4):
+        for c in range(4):
+            stack = []
+            if not connect_list[r][c]:
+                connect_list[r][c] = True
+                stack.append([r, c])
+                renew_connect_list(r, c)
 
+                if len(stack) > 1:
+                    avg = sum([map_list[x][y] for x, y in stack]) // len(stack)
+                    for x, y in stack:
+                        map_list[x][y] = avg
+                stack_list.append(stack)
+    print(stack_list)
+    if len(stack_list) == 16:
+        is_continue = False
+        break
+    count += 1
 
-# def get_average_pop():
-#     for r in range(3):
-#         for c in range(3):
-#             if connect_list[r][c] > 0:
-
-for r in range(4):
-    for c in range(4):
-        renew_connect_list(city_index, r, c)
-        city_index += 1
-print(connect_list)
-print(city_index)
+print(count)
