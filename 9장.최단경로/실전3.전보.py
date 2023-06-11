@@ -10,7 +10,7 @@ graph = [[] for i in range(n+1)]
 distance = [INF] * (n+1)
 
 for _ in range(m):
-    x, y , z = map(int, input().split())
+    x, y, z = map(int, input().split())
     graph[x].append((y, z))
 
 def dijkstra(start):
